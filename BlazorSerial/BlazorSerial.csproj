@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Authors>jasniec</Authors>
+    <Description>A blazor WASM library to wrap Serial API (for chrome based browsers).</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/jasniec/BlazorSerial</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jasniec/BlazorSerial</RepositoryUrl>
+    <PackageTags>Blazor,WASM,Serial,SerialPort</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.3.1</Version>
+    <AssemblyVersion>1.0.3.1</AssemblyVersion>
+    <FileVersion>1.0.3.1</FileVersion>
+  </PropertyGroup>
+
+  
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.11" />
+  </ItemGroup>
+
+</Project>

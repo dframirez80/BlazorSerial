@@ -1,0 +1,40 @@
+﻿@page "/"
+@using BlazorAppSerial.Serial;
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<button class="btn btn-primary" @onclick="WriteHelloWorld">Conectar</button>
+<button class="btn btn-primary" @onclick=@(()=>SerialMessage("hola pianola"))>enviar</button>
+<div id="target">@dataReceived</div>
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code{
+    [Inject] public ISerialPort serialPort { get; set; }
+    [Inject] public IJSRuntime js { get; set; }
+    string dataReceived;
+
+    async Task WriteHelloWorld()
+    {
+        if (await serialPort.RequestPort() == Serial.Enums.RequestPortResponseEnum.Ok
+         && await serialPort.Open(115200) == Serial.Enums.ConnectResponseEnum.Ok)
+        {
+            await serialPort.Write("Hello World!");
+        }
+    }
+
+    private async Task SerialMessage(string message)
+    {
+        if (serialPort.IsConnected)
+        {
+            await serialPort.Write(message);
+            await Task.Delay(20);
+        }
+        dataReceived = await serialPort.Read();
+    }
+
+    
+}
