@@ -33,6 +33,7 @@ async function blazorSerialOpen(baudRate) {
             write(chunk) {
                 dataReceived += chunk;
                 isDataReceived = true;
+                dotNetObject.invokeMethodAsync('RxText', dataReceived.toString());
             }
         });
         blazorSerialPort.readable
@@ -74,6 +75,9 @@ function blazorSerialIsDataReceived() {
     return isDataReceived;
 }
 
-function blazorSerialClearReceived() {
-    
-}
+startRandomGenerator = function (dotNetObject) {
+    setInterval(function () {
+        console.log("JS: Generated " + text);
+        dotNetObject.invokeMethodAsync('AddText', text.toString());
+    }, 1000);
+};

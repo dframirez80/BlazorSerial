@@ -75,5 +75,6 @@ namespace BlazorAppSerial.Serial
 
         public async Task<bool> IsDataForRead() => await _jsRuntime.InvokeAsync<bool>("blazorSerialIsDataReceived");
         public async Task<string> Read() => await _jsRuntime.InvokeAsync<string>("blazorSerialReadText");
+
     }
 }
